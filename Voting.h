@@ -16,48 +16,35 @@
 using namespace std;
 
 // ------------
-// voting_read
+// voting_answer
 // ------------
 
 /**
- * read two ints
- * @param s a string
- * @return a pair of ints, representing the beginning and end of a range, [i, j]
+ * read string vector
+ * @param input a string vector
+ * @return a string answer, one that answers who wins the ballot
  */
-pair<int, int> collatz_read (const string& s);
+string voting_answer(std::vector<string> input);
 
-// ------------
-// collatz_eval
-// ------------
+// -----
+// split
+// -----
 
 /**
- * @param i the beginning of the range, inclusive
- * @param j the end       of the range, inclusive
- * @return the max cycle length of the range [i, j]
+ * @param s string to split into array
+ * @param delim char: the delimiter
+ * @return vector of strings from s split by the delimiter
  */
-int collatz_eval (int i, int j);
+std::vector<std::string> split(const std::string &s, char delim);
 
 // -------------
-// collatz_print
-// -------------
-
-/**
- * print three ints
- * @param w an ostream
- * @param i the beginning of the range, inclusive
- * @param j the end       of the range, inclusive
- * @param v the max cycle length
- */
-void collatz_print (ostream& w, int i, int j, int v);
-
-// -------------
-// collatz_solve
+// voting_solve
 // -------------
 
 /**
  * @param r an istream
  * @param w an ostream
  */
-void collatz_solve (istream& r, ostream& w);
+void voting_solve(istream& r, ostream& w);
 
 #endif // Collatz_h

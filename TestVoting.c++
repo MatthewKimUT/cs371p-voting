@@ -1,11 +1,6 @@
 /** @file TestCollatz.c++
  *  @brief Contains unit tests for each method in Collatz.c++
  */
-// --------------------------------
-// projects/collatz/TestCollatz.c++
-// Copyright (C) 2015
-// Glenn P. Downing
-// --------------------------------
 
 // https://code.google.com/p/googletest/wiki/V1_7_Primer#Basic_Assertions
 
@@ -20,7 +15,7 @@
 
 #include "gtest/gtest.h"
 
-#include "Collatz.h"
+#include "Voting.h"
 
 using namespace std;
 
