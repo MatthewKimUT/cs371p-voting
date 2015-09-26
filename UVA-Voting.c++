@@ -1,3 +1,10 @@
+/** @file RunVoting.c++
+ *	@brief Contains main method for testing with I/O
+ */
+
+// --------
+// includes
+// --------
 /** @file Voting.c++
  *  @brief Contains function implementations for Collatz project
  */
@@ -11,7 +18,6 @@
 #include <sstream>  // istringstream
 #include <string>   // getline, string
 #include <utility>  // make_pair, pair
-#include "Voting.h"
 #include <iterator>
 #include <vector>
 #include <algorithm>
@@ -251,3 +257,51 @@ void voting_solve(istream& r, ostream& w){
     assert(count == numEntries);
 }
 
+
+
+// ----
+// main
+// ----
+
+int main () {
+    using namespace std;
+    voting_solve(cin, cout);
+    return 0;}
+
+/*
+% g++ -pedantic -std=c++11 -Wall Voting.c++ RunVoting.c++ -o RunVoting
+
+
+
+% cat RunVoting.in
+1 10
+100 200
+201 210
+900 1000
+
+
+
+% RunVoting < RunVoting.in > RunVoting.out
+
+
+
+% cat RunVoting.out
+1 10 1
+100 200 1
+201 210 1
+900 1000 1
+
+
+
+% doxygen -g
+// That creates the file Doxyfile.
+// Make the following edits to Doxyfile.
+// EXTRACT_ALL            = YES
+// EXTRACT_PRIVATE        = YES
+// EXTRACT_STATIC         = YES
+
+
+
+% doxygen Doxyfile
+// That creates the directory html/.
+*/

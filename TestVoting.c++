@@ -30,31 +30,31 @@ using namespace std;
 TEST(VotingFixture, voting1){
     std::vector<string> s = {"2","A","B", "1 2", "1 2"};
     string str = voting_answer(s);
-    ASSERT_EQ( "A\n", str);
+    ASSERT_EQ( "A", str);
 }
 
 TEST(VotingFixture, voting2){
     std::vector<string> s = {"3","Alpha","Beta", "Charlie", "1 2 3", "2 3 1", "3 1 2"};
     string str = voting_answer(s);
-    ASSERT_EQ( "Alpha\nBeta\nCharlie\n", str);
+    ASSERT_EQ( "Alpha\nBeta\nCharlie", str);
 }
 
 TEST(VotingFixture, voting3){
     std::vector<string> s = {"4","A","B", "C", "D", "1 2 4 3", "1 2 4 3", "2 1 4 3", "2 1 4 3"};
     string str = voting_answer(s);
-    ASSERT_EQ( "A\nB\n", str);
+    ASSERT_EQ( "A\nB", str);
 }
 
 TEST(VotingFixture, voting4){
-    std::vector<string> s = {"5","A","B","C","D","E", "1 2 3 4 5", "5 1 2 4 3", "2 1 5 3 4", " 3 1 5 4 2", "4 2 3 5 1"};
+    std::vector<string> s = {"3", "one", "two", "three", "1 2 3", "1 2 3", "1 2 3"};
     string str = voting_answer(s);
-    ASSERT_EQ( "A\n", str);
+    ASSERT_EQ( "one", str);
 }
 
 TEST(VotingFixture, voting5){
-    std::vector<string> s = {"5","A","B","C","D","E", "1 2 3 4 5", "5 1 2 4 3", "2 1 5 3 4", " 3 1 5 4 2", "4 2 3 5 1", "1 5 3 4 2", "2 4 5 3 1"};
+    std::vector<string> s = {"3", "help", "me", "please", "3 2 1", "1 2 3", "1 2 3"};
     string str = voting_answer(s);
-    ASSERT_EQ( "A\n", str);
+    ASSERT_EQ( "help", str);
 }
 
 // -----
