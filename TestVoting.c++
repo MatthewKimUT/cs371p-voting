@@ -12,7 +12,7 @@
 #include <sstream>  // istringtstream, ostringstream
 #include <string>   // string
 #include <utility>  // pair
-
+#include <vector>
 #include "gtest/gtest.h"
 
 #include "Voting.h"
@@ -24,94 +24,48 @@ using namespace std;
 // -----------
 
 // ----
-// read
+// voting_answer
 // ----
 
-TEST(CollatzFixture, read1){
-    string s("1 10\n");
-    const pair<int, int> p = collatz_read(s);
-    ASSERT_EQ( 1, p.first);
-    ASSERT_EQ(10, p.second);
+TEST(VotingFixture, voting1){
+    std::vector<string> s = {"2","A","B", "1 2", "1 2"};
+    string str = voting_answer(s);
+    ASSERT_EQ( "A\n", str);
 }
 
-TEST(CollatzFixture, read2){
-    string s("1 15");
-    const pair<int, int> p = collatz_read(s);
-    ASSERT_EQ( 1, p.first);
-    ASSERT_EQ(15, p.second);
+TEST(VotingFixture, voting2){
+    std::vector<string> s = {"3","Alpha","Beta", "Charlie", "1 2 3", "2 3 1", "3 1 2"};
+    string str = voting_answer(s);
+    ASSERT_EQ( "Alpha\nBeta\nCharlie\n", str);
 }
 
-TEST(CollatzFixture, read3){
-    string s("30 20\n");
-    const pair<int, int> p = collatz_read(s);
-    ASSERT_EQ(30, p.first);
-    ASSERT_EQ(20, p.second);
+TEST(VotingFixture, voting3){
+    std::vector<string> s = {"4","A","B", "C", "D", "1 2 4 3", "1 2 4 3", "2 1 4 3", "2 1 4 3"};
+    string str = voting_answer(s);
+    ASSERT_EQ( "A\nB\n", str);
 }
 
-// ----
-// eval
-// ----
-
-TEST(CollatzFixture, eval_1){
-    const int v = collatz_eval(1, 10);
-    ASSERT_EQ(20, v);
+TEST(VotingFixture, voting4){
+    std::vector<string> s = {"5","A","B","C","D","E", "1 2 3 4 5", "5 1 2 4 3", "2 1 5 3 4", " 3 1 5 4 2", "4 2 3 5 1"};
+    string str = voting_answer(s);
+    ASSERT_EQ( "A\n", str);
 }
 
-TEST(CollatzFixture, eval_2){
-    const int v = collatz_eval(100, 200);
-    ASSERT_EQ(125, v);
+TEST(VotingFixture, voting5){
+    std::vector<string> s = {"5","A","B","C","D","E", "1 2 3 4 5", "5 1 2 4 3", "2 1 5 3 4", " 3 1 5 4 2", "4 2 3 5 1", "1 5 3 4 2", "2 4 5 3 1"};
+    string str = voting_answer(s);
+    ASSERT_EQ( "A\n", str);
 }
 
-TEST(CollatzFixture, eval_3){
-    const int v = collatz_eval(201, 210);
-    ASSERT_EQ(89, v);
-}
-
-TEST(CollatzFixture, eval_4){
-    const int v = collatz_eval(900, 1000);
-    ASSERT_EQ(174, v);
-}
-
-TEST(CollatzFixture, eval_5){
-    const int v = collatz_eval(1, 1);
-    ASSERT_EQ(1, v);
-}
-
-TEST(CollatzFixture, eval_6){
-    const int v = collatz_eval(10, 1);
-    ASSERT_EQ(20, v);
-}
-
-// -----
-// print
-// -----
-
-TEST(CollatzFixture, print1){ 
-    ostringstream w;
-    collatz_print(w, 1, 10, 20);
-    ASSERT_EQ("1 10 20\n", w.str());
-}
-
-TEST(CollatzFixture, print2){ 
-    ostringstream w;
-    collatz_print(w, 1, 900, 20);
-    ASSERT_EQ("1 900 20\n", w.str());
-}
-
-TEST(CollatzFixture, print3){ 
-    ostringstream w;
-    collatz_print(w, 999, 998, 997);
-    ASSERT_EQ("999 998 997\n", w.str());
-}
 // -----
 // solve
 // -----
 
-TEST(CollatzFixture, solve){
-    istringstream r("1 10\n100 200\n201 210\n900 1000\n");
+TEST(VotingFixture, solve){
+    istringstream r("1\n\n2\nA\nB\n1 2\n1 2");
     ostringstream w;
-    collatz_solve(r, w);
-    ASSERT_EQ("1 10 20\n100 200 125\n201 210 89\n900 1000 174\n", w.str());
+    voting_solve(r, w);
+    ASSERT_EQ("A\n", w.str());
 }
 
 /*

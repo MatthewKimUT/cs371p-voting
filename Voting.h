@@ -12,6 +12,7 @@
 #include <iostream> // istream, ostream
 #include <string>   // string
 #include <utility>  // pair
+#include <vector>
 
 using namespace std;
 
@@ -36,6 +37,8 @@ string voting_answer(std::vector<string> input);
  * @return vector of strings from s split by the delimiter
  */
 std::vector<std::string> split(const std::string &s, char delim);
+
+std::vector<std::string> &split(const std::string &s, char delim, std::vector<std::string> &elems);
 
 // -------------
 // voting_solve
