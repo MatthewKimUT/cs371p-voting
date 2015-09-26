@@ -1,0 +1,29 @@
+commit 50407b795078789c4926504d22677437ca0c15f7
+Author: Matthew Kim <myk235@cs.utexas.edu>
+Date:   Fri Sep 25 21:21:07 2015 -0500
+
+    added html files
+
+commit 3a75145874687c057dc66de4754569f5a8a7bc3b
+Author: Matthew Kim <myk235@cs.utexas.edu>
+Date:   Fri Sep 25 20:54:08 2015 -0500
+
+    fixed Voting algorithm
+
+commit 6b28977b29503686d6b40c9bd13bc6ae9a2a44cf
+Author: Matthew Kim <myk235@cs.utexas.edu>
+Date:   Fri Sep 25 20:19:51 2015 -0500
+
+    readded files
+
+commit d0374a147fd7da8f1f35a15d5cd0f23417068ae2
+Author: Matthew Kim <myk235@cs.utexas.edu>
+Date:   Thu Sep 24 15:21:33 2015 -0500
+
+    Added First solution to voting.c++ and voting.h
+
+commit 44708c48c3105e82099c393420dcbcaf2f98f392
+Author: Matthew Kim <myk235@cs.utexas.edu>
+Date:   Thu Sep 24 11:12:56 2015 -0500
+
+    initial commit, only makefile is completed

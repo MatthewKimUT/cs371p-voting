@@ -74,6 +74,9 @@ html: Doxyfile Voting.h Voting.c++ Voting.c++ TestVoting.c++
 Voting.log:
 	git log > Voting.log
 
+voting-tests:
+	git clone https://github.com/cs371p-fall-2015/voting-tests.git
+
 Doxyfile:
 	doxygen -g
 
