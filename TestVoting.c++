@@ -1,5 +1,5 @@
-/** @file TestCollatz.c++
- *  @brief Contains unit tests for each method in Collatz.c++
+/** @file TestVoting.c++
+ *  @brief Contains unit tests for each method in Voting.c++
  */
 
 // https://code.google.com/p/googletest/wiki/V1_7_Primer#Basic_Assertions
@@ -55,6 +55,37 @@ TEST(VotingFixture, voting5){
     std::vector<string> s = {"3", "help", "me", "please", "3 2 1", "1 2 3", "1 2 3"};
     string str = voting_answer(s);
     ASSERT_EQ( "help", str);
+}
+
+
+// -----
+// split
+// -----
+TEST(VotingFixture, split1){
+    string s = "one two three four";
+    std::vector<string> strs = split(s, ' ');
+    std::vector<string> ans {"one", "two", "three", "four"};
+    for(unsigned int i = 0; i < strs.size(); i++){
+        ASSERT_EQ(strs[i], ans[i]);
+    }
+}
+
+TEST(VotingFixture, split2){
+    string s = "one:two:three four";
+    std::vector<string> strs = split(s, ':');
+    std::vector<string> ans {"one", "two", "three four"};
+    for(unsigned int i = 0; i < strs.size(); i++){
+        ASSERT_EQ(strs[i], ans[i]);
+    }
+}
+
+TEST(VotingFixture, split3){
+    string s = "onetwothreefour";
+    std::vector<string> strs = split(s, 't');
+    std::vector<string> ans {"one", "wo", "hreefour"};
+    for(unsigned int i = 0; i < strs.size(); i++){
+        ASSERT_EQ(strs[i], ans[i]);
+    }
 }
 
 // -----

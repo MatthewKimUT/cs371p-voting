@@ -22,105 +22,44 @@ using namespace std;
 // voting_answer
 // -------------
 
-string voting_answer(std::vector<string> input){
-	int numPeople = 0;
+string voting_answer(std::vector<string> &input){
+	int numPeople = atoi(input[0].c_str());
+	int numBallots = 0;
+	assert(numPeople > 0);
+	assert(numPeople <= 20);
 	std::vector<string> candidates;
-	std::vector<string> ballots;
+	std::vector<vector<string>> ballots (numPeople, std::vector<string>(0));
 
 	//read string input and determine number of people, who candidates are, and initialize array of ballots
-	for(unsigned int i = 0; i < input.size(); i++){
+	for(unsigned int i = 1; i < input.size(); i++){
 		string s = input[i];
-		if(i == 0){
-			numPeople = atoi(s.c_str());
-			assert(numPeople > 0);
-			assert(numPeople <= 20);
+		if(numPeople > 0){
+			candidates.push_back(s);
+			numPeople -= 1;
 		}
 		else{
-			if(numPeople > 0){
-				candidates.push_back(s);
-				numPeople -= 1;
-			}
-			else{
-				ballots.push_back(s);
-			}
+			int firstNum = atoi(s.c_str());
+			ballots[firstNum - 1].push_back(s);
+			numBallots++;
 		}
 	}
 
-	//sort ballots by first vote and find indexes where each first char changes
-	//this allows counting of eliminated ballots without searching through whole ballot array
-	assert(ballots.size() <= 1000);
-	assert(ballots.size() > 0);
-	//std::sort(ballots.begin(), ballots.end());
-	std::sort(ballots.begin(), ballots.end(), [](const string& a, const string b) {
-		std::vector<string> aVec = split(a, ' ');
-		std::vector<string> bVec = split(b, ' ');
-		int aNum = atoi(aVec[0].c_str());
-		int bNum = atoi(bVec[0].c_str());
-	  	return aNum< bNum;
-	});
-	std::vector<unsigned int> indices;
-	unsigned int num = 1;
-	indices.push_back(0);
-	for(unsigned int i = 0; i < ballots.size(); i++){
-		string s = ballots[i];
-		std::vector<string> nums = split(s, ' ');
-		unsigned int tmp = atoi(nums[0].c_str());
-		if(tmp != num){
-			unsigned int diff = tmp - num;
-			if(diff > 1){
-				while(diff > 1){
-					indices.push_back(i);
-					diff--;
-					num++;
-				}
-			}
-			indices.push_back(i);
-			num++;
-		}
-	}
-	if(indices.size() < candidates.size()){
-		while(num <= candidates.size()){
-			indices.push_back(ballots.size());
-			num++;
-		}
-	}
-	indices.push_back(ballots.size());
 	//main loop that determines the winner of the votes
 	string answer = "";
 	std::vector<int> removed;
 	std::vector<int> tempRemoved;
-	std::vector<string> tempBallots;
-	std::vector<bool> voteRemoved;
-	std::vector<int> voteCounts(candidates.size(), 0);
+	std::vector<int> voteCounts;
+	int majority = numBallots / 2;
+	int maxVote;
+	int minVote;
 	while(answer.compare("") == 0){
-		//loop through ballots and count votes initially
-		if(removed.size() == 0){
-			for(unsigned int i = 0; i < ballots.size(); i++){
-				string s = ballots[i];
-				int voteChar = atoi(s.c_str());
-				int voteIndex = voteChar - 1;
-				voteCounts[voteIndex] ++;
-			}
+		for(size_t i = 0 ; i < ballots.size(); i ++){
+			voteCounts.push_back(ballots[i].size());
 		}
-		//reinsert temp ballots into ballot vector
-		else{
-			for(unsigned int i = 0; i < tempBallots.size(); i++){
-					if(voteRemoved[i]){
-					string s2 = tempBallots[i];
-					int voteChar2 = atoi(s2.c_str());
-					int voteIndex2 = voteChar2 - 1;
-					voteCounts[voteIndex2]++;
-				}
-			}
-			for(unsigned int i = 0; i < voteRemoved.size(); i++){
-				voteRemoved[i] = false;
-			}
-		}
-		int maxVote = -1;
-		int minVote = 1001;
-		int majority = ballots.size() / 2;
+		maxVote = -1;
+		minVote = 1001;
 		//loop to find max, min votes, and in case one voter has a majority, declare the winner.
-		for(unsigned int i = 0; i < voteCounts.size(); i++){
+		for(size_t i = 0; i < voteCounts.size(); i++){
 			int votes = voteCounts[i];
 			if(votes > maxVote)
 				maxVote = voteCounts[i];
@@ -133,7 +72,7 @@ string voting_answer(std::vector<string> input){
 		//Tied winners
 		if(minVote == maxVote){
 			if(answer.compare("") == 0){
-				for(unsigned int i = 0; i < voteCounts.size(); i++){
+				for(size_t i = 0; i < voteCounts.size(); i++){
 					if(voteCounts[i] == maxVote){
 						if(answer.compare("") == 0)
 							answer += candidates[i];
@@ -145,54 +84,47 @@ string voting_answer(std::vector<string> input){
 		}
 		//find tied losers, if any, put them in removed vector, and set their votes to zero, then push ballots to recount to tempBallots
 		else{
-			for(unsigned int i = 0; i < voteCounts.size(); i++){
+			for(size_t i = 0; i < voteCounts.size(); i++){
 				if(voteCounts[i] == minVote){
 					removed.push_back(i);
 					tempRemoved.push_back(i);
-					voteCounts[i] = 0;
 				}
 			}
-			std::vector<int> startIndices;
-			std::vector<int> endIndices;
-			for(unsigned int i = 0; i < tempRemoved.size(); i++){
-				if(indices[tempRemoved[i]] != ballots.size()){
-					startIndices.push_back(indices[tempRemoved[i]]);
-					endIndices.push_back(indices[tempRemoved[i] + 1]);
-				}
-			}
-			for(unsigned int p = 0; p < startIndices.size(); p++){
-				for(int j = startIndices[p]; j < endIndices[p]; j++){
-					tempBallots.push_back(ballots[j]);
-					voteRemoved.push_back(false);
-				}
-			}
-			for(unsigned int j = 0; j < tempBallots.size(); j++){
-				std::vector<string> splitVotes = split(tempBallots[j], ' ');
-				int firstVote = atoi(splitVotes[0].c_str());
-				for(unsigned int p = 0; p < removed.size(); p++){
-					if(firstVote == removed[p] + 1){
-						std::vector<string> newVotes;
-						for(unsigned int m = 1; m < splitVotes.size(); m++)
-							newVotes.push_back(splitVotes[m]);
-						string newString = "";
-						for(unsigned int l = 0; l < newVotes.size(); l++){
-							if(l == 0)
-								newString += newVotes[l];
-							else
-								newString += " " + newVotes[l];
+			for(size_t i = 0; i < tempRemoved.size(); i++){
+				std::vector<string> &removalVotes = ballots[tempRemoved[i]];
+				for(size_t j = 0; j < removalVotes.size(); j++){
+					string line = removalVotes[j];
+					int oldNum = atoi(line.c_str());
+					for(size_t k = 0; k < removed.size(); k++){
+						if(oldNum == (removed[k] + 1)){
+							std::vector<string> lineToCut = split(line, ' ');
+							string newLine = "";
+							for(size_t l = 1; l < lineToCut.size(); l++){
+								if(newLine.compare("") == 0)
+									newLine += lineToCut[l];
+								else
+									newLine += " " + lineToCut[l];
+							}
+							removalVotes[j] = newLine;
+							--j;
+							break;
 						}
-						voteRemoved.at(j) = true;
-						tempBallots.at(j) = newString;
-						j--;
 					}
 				}
 			}
-			for(unsigned int i = 0; i < tempBallots.size(); i++){
-
+			for(size_t i = 0; i < tempRemoved.size(); i++){
+				std::vector<string> removalVotes = ballots[tempRemoved[i]];
+				for(size_t j = 0; j < removalVotes.size(); j++){
+					string line = removalVotes[j];
+					int first = atoi(line.c_str());
+					ballots[first - 1].push_back(line);
+				}
+			}
+			for(size_t i = 0; i < tempRemoved.size(); i++){
+				ballots[tempRemoved[i]].clear();
 			}
 			tempRemoved.clear();
-			startIndices.clear();
-			endIndices.clear();
+			voteCounts.clear();
 		}
 	}
 	assert(answer.compare("") != 0);

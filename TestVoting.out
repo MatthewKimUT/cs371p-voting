@@ -1,38 +1,44 @@
-==7994== Memcheck, a memory error detector
-==7994== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
-==7994== Using Valgrind-3.10.0.SVN and LibVEX; rerun with -h for copyright info
-==7994== Command: ./TestVoting
-==7994== 
+==6543== Memcheck, a memory error detector
+==6543== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==6543== Using Valgrind-3.10.0.SVN and LibVEX; rerun with -h for copyright info
+==6543== Command: ./TestVoting
+==6543== 
 Running main() from gtest_main.cc
-[==========] Running 6 tests from 1 test case.
+[==========] Running 9 tests from 1 test case.
 [----------] Global test environment set-up.
-[----------] 6 tests from VotingFixture
+[----------] 9 tests from VotingFixture
 [ RUN      ] VotingFixture.voting1
-[       OK ] VotingFixture.voting1 (89 ms)
+[       OK ] VotingFixture.voting1 (91 ms)
 [ RUN      ] VotingFixture.voting2
 [       OK ] VotingFixture.voting2 (13 ms)
 [ RUN      ] VotingFixture.voting3
-[       OK ] VotingFixture.voting3 (9 ms)
+[       OK ] VotingFixture.voting3 (8 ms)
 [ RUN      ] VotingFixture.voting4
 [       OK ] VotingFixture.voting4 (6 ms)
 [ RUN      ] VotingFixture.voting5
 [       OK ] VotingFixture.voting5 (54 ms)
+[ RUN      ] VotingFixture.split1
+[       OK ] VotingFixture.split1 (6 ms)
+[ RUN      ] VotingFixture.split2
+[       OK ] VotingFixture.split2 (5 ms)
+[ RUN      ] VotingFixture.split3
+[       OK ] VotingFixture.split3 (5 ms)
 [ RUN      ] VotingFixture.solve
 [       OK ] VotingFixture.solve (12 ms)
-[----------] 6 tests from VotingFixture (190 ms total)
+[----------] 9 tests from VotingFixture (207 ms total)
 
 [----------] Global test environment tear-down
-[==========] 6 tests from 1 test case ran. (219 ms total)
-[  PASSED  ] 6 tests.
-==7994== 
-==7994== HEAP SUMMARY:
-==7994==     in use at exit: 0 bytes in 0 blocks
-==7994==   total heap usage: 1,001 allocs, 1,001 frees, 70,275 bytes allocated
-==7994== 
-==7994== All heap blocks were freed -- no leaks are possible
-==7994== 
-==7994== For counts of detected and suppressed errors, rerun with: -v
-==7994== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+[==========] 9 tests from 1 test case ran. (235 ms total)
+[  PASSED  ] 9 tests.
+==6543== 
+==6543== HEAP SUMMARY:
+==6543==     in use at exit: 0 bytes in 0 blocks
+==6543==   total heap usage: 1,093 allocs, 1,093 frees, 76,296 bytes allocated
+==6543== 
+==6543== All heap blocks were freed -- no leaks are possible
+==6543== 
+==6543== For counts of detected and suppressed errors, rerun with: -v
+==6543== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 File 'Voting.c++'
 Lines executed:91.08% of 157
 Branches executed:92.68% of 246
@@ -40,8 +46,8 @@ Taken at least once:60.57% of 246
 Calls executed:74.48% of 239
 Creating 'Voting.c++.gcov'
 File 'TestVoting.c++'
-Lines executed:100.00% of 26
-Branches executed:77.17% of 254
-Taken at least once:40.55% of 254
-Calls executed:64.59% of 353
+Lines executed:100.00% of 47
+Branches executed:76.60% of 376
+Taken at least once:41.22% of 376
+Calls executed:64.53% of 516
 Creating 'TestVoting.c++.gcov'

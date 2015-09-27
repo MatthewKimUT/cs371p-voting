@@ -25,7 +25,7 @@ using namespace std;
  * @param input a string vector
  * @return a string answer, one that answers who wins the ballot
  */
-string voting_answer(std::vector<string> input);
+string voting_answer(std::vector<string> &input);
 
 // -----
 // split

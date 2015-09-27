@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>My Project: RunVoting.c++ File Reference</title>
+<title>My Project: TestVoting.c++ File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -81,23 +81,52 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">RunVoting.c++ File Reference</div>  </div>
+<div class="title">TestVoting.c++ File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Contains main method for testing with I/O.  
+<p>Contains unit tests for each method in Voting.c++.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;iostream&gt;</code><br/>
+<code>#include &lt;sstream&gt;</code><br/>
+<code>#include &lt;string&gt;</code><br/>
+<code>#include &lt;utility&gt;</code><br/>
+<code>#include &lt;vector&gt;</code><br/>
+<code>#include &quot;gtest/gtest.h&quot;</code><br/>
 <code>#include &quot;<a class="el" href="Voting_8h_source.html">Voting.h</a>&quot;</code><br/>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae66f6b31b5ad750f1fe042a706a4e3d4"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> ()</td></tr>
-<tr class="separator:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19e79f875f46e53431c0ddc3078d592c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a19e79f875f46e53431c0ddc3078d592c"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>TEST</b> (VotingFixture, voting1)</td></tr>
+<tr class="separator:a19e79f875f46e53431c0ddc3078d592c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00eea24ec023eac591754a6325cc64b5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a00eea24ec023eac591754a6325cc64b5"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>TEST</b> (VotingFixture, voting2)</td></tr>
+<tr class="separator:a00eea24ec023eac591754a6325cc64b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85798adc2b097a1ec05091534c93a144"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a85798adc2b097a1ec05091534c93a144"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>TEST</b> (VotingFixture, voting3)</td></tr>
+<tr class="separator:a85798adc2b097a1ec05091534c93a144"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af88acafd0841b38c168a1ab524d30306"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af88acafd0841b38c168a1ab524d30306"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>TEST</b> (VotingFixture, voting4)</td></tr>
+<tr class="separator:af88acafd0841b38c168a1ab524d30306"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c02e6ee6cef94dd63bc515de00e5dac"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8c02e6ee6cef94dd63bc515de00e5dac"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>TEST</b> (VotingFixture, voting5)</td></tr>
+<tr class="separator:a8c02e6ee6cef94dd63bc515de00e5dac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2368094b125104e6bb3b3d90b2f7005a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2368094b125104e6bb3b3d90b2f7005a"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>TEST</b> (VotingFixture, split1)</td></tr>
+<tr class="separator:a2368094b125104e6bb3b3d90b2f7005a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8c03e5a97f14b042ef74038609e950c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af8c03e5a97f14b042ef74038609e950c"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>TEST</b> (VotingFixture, split2)</td></tr>
+<tr class="separator:af8c03e5a97f14b042ef74038609e950c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1908dabf87fb0a0d3e8349005a0c5543"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1908dabf87fb0a0d3e8349005a0c5543"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>TEST</b> (VotingFixture, split3)</td></tr>
+<tr class="separator:a1908dabf87fb0a0d3e8349005a0c5543"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a058e160da7fa85f37e2f8ecf289a4ccc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a058e160da7fa85f37e2f8ecf289a4ccc"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>TEST</b> (VotingFixture, solve)</td></tr>
+<tr class="separator:a058e160da7fa85f37e2f8ecf289a4ccc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Contains main method for testing with I/O. </p>
+<div class="textblock"><p>Contains unit tests for each method in Voting.c++. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
